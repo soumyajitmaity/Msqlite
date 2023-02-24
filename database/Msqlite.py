@@ -1,5 +1,6 @@
  #todo: setting up a sqlite database 
 ##########################
+
 #auther: soumyajit maity
 #purpose of the module: personal diy module to handle simple sqlite functionalities
 
@@ -21,10 +22,10 @@ def createTable(databaseName,tableName,tableStructure):
     database_cursor = getConnection(databaseName + '.db')
     database_cursor.execute('CREATE TABLE ' + tableName + '(' + tableStructure + ')')
 
-def tableStructure(dataModelJSONobj) -> str:
+def tableStructure(dataModelmap) -> str:
     s = ""
-    for key in dataModelJSONobj:
-        s += key + " " + dataModelJSONobj[key] + notnull(True) + ","
+    for key in dataModelmap:
+        s += key + " " + dataModelmap[key] + notnull(True) + ","
     
     return s[:len(s)-1]
  
@@ -37,7 +38,15 @@ def stringfield(size)->str:
 
 def IntegerField(): return "Integer"
 
-def randomIDgenerator(s) -> int:
-    ID = 0
 
-    return  ID
+def booleanfield(): return "BOOLEAN"
+
+def datefield(s):
+    if s == "D": return "DATE"
+    if s == "DT": return "DATETIME"
+    if s == "TS": return "TIMESTAMP"
+    if s == "Y": return "YEAR"
+
+
+    
+
